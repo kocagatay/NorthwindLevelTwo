@@ -2,12 +2,20 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Concrete.EntityFramework.Contexts;
+using Microsoft.EntityFrameworkCore;
 using MvcWebUI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//builder.Services.AddDbContext<NorthwindContext>(opt =>
+//{
+//    opt.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+//        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")));
+//});
 
 builder.Services.AddSingleton<IProductService, ProductManager>();
 builder.Services.AddSingleton<IProductDal, EfProductDal>();
