@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog = tempdb;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog = Northwind;Trusted_Connection=true");
         }
 
         public DbSet<Product> Products { get; set; }

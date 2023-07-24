@@ -32,6 +32,7 @@
                     <td>@cartLine.Product.ProductName</td>
                     <td>@cartLine.Product.QuantityPerUnit</td>
                     <td>@cartLine.Product.UnitPrice</td>
+                    <td>@cartLine.Product.UnitsInStock</td>
                     <td>@cartLine.Quantity</td>
                     <td><a class="btn btn-sm btn-danger " asp-controller="Cart" asp-action="RemoveFromCart" asp-route-productId="@cartLine.Product.ProductId">Sil</a></td>
                 </tr>
