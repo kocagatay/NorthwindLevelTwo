@@ -1,12 +1,22 @@
 ﻿@model ProductListViewModel
 @{
     ViewData["Title"] = "Index";
-    //ViewBag.Title = "title";
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h1>Ürünler</h1>
+<td><a class="btn btn-sm btn-success" asp-controller="Admin" asp-action="Add" > Yeni Ürün Ekle </a></td>
 <table class="table table-responsive">
+    <tr>
+        <th>Id</th>
+        <th>Ürün Adı</th>
+        <th>Açıklama</th>
+        <th>Fiyat</th>
+        <th>Stok Adedi</th>
+        <th></th>
+        <th></th>
+
+    </tr>
     @foreach (var product in Model.Products)
     {
         <tr>
@@ -15,9 +25,10 @@
             <td>@product.QuantityPerUnit</td>
             <td>@product.UnitPrice</td>
             <td>@product.UnitsInStock</td>
+
             @*asp-route="product" controllerda bu action'ın üzerine attribute olarak [Route(Name="product")] bu ikisinin işini birden yapmış oluyor bunlara gerek kalmıyor (asp-controller="Cart" asp-action="AddToCart")   *@
-            <td><a class="btn btn-sm btn-success" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId"> Sepete Ekle </a></td>
+            <td><a class="btn btn-sm btn-primary" asp-controller="Admin" asp-action="Update" asp-route-productId="@product.ProductId"> Güncelle </a></td>
+            <td><a class="btn btn-sm btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-productId="@product.ProductId"> Sil </a></td>
         </tr>
     }
 </table>
- 

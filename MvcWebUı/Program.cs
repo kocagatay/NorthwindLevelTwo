@@ -2,8 +2,9 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.EntityFramework.Contexts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MvcWebUI.Entities;
 using MvcWebUI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,8 +23,10 @@ builder.Services.AddSingleton<IProductDal, EfProductDal>();
 
 builder.Services.AddSingleton<ICategoryService, CategoryManager>();
 builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
+builder.Services.AddDbContext<CustomIdentityDbContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true"));
+builder.Services.AddIdentity<CustomIdentityUser, CustomIdentityRole>().AddEntityFrameworkStores<CustomIdentityDbContext>().AddDefaultTokenProviders();
 
-builder.Services.AddScoped<ICartService, CartManager>();// Bu ikisini scoped deðil singleton yaparsan bütün kullanýcýlarýn sepeti ayný olur yani bir ürün ekleyince herkesin ürününe ekler
+builder.Services.AddScoped<ICartService, CartManager>();// Bu ikisini scoped deÃ°il singleton yaparsan bÃ¼tÃ¼n kullanÃ½cÃ½larÃ½n sepeti aynÃ½ olur yani bir Ã¼rÃ¼n ekleyince herkesin Ã¼rÃ¼nÃ¼ne ekler
 builder.Services.AddScoped<ICartSessionHelper, CartSessionHelper>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSession();
@@ -42,8 +45,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 app.UseSession();
 app.UseAuthorization();
+
+
+
+//app.MapControllerRoute(
+//    name: "areas",
+//    pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

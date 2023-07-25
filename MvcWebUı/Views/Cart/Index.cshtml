@@ -6,10 +6,11 @@
 
 <h2>Sepetiniz</h2>
 
-@if (Model.Cart.CartLines.Count==0)
+@if (Model.Cart.CartLines.Count == 0)
 {
     <h5 class="alert alert-danger">Sepetiniz Boş</h5>
-}else
+}
+else
 {
     <table class="table table-responsive">
 
@@ -21,6 +22,7 @@
                 <th>Fiyat</th>
                 <th>Stok Adedi</th>
                 <th>Satış Adedi</th>
+                
             </tr>
         </thead>
         @foreach (var cartLine in Model.Cart.CartLines)
@@ -35,9 +37,18 @@
                     <td>@cartLine.Quantity</td>
                     <td><a class="btn btn-sm btn-danger " asp-controller="Cart" asp-action="RemoveFromCart" asp-route-productId="@cartLine.Product.ProductId">Sil</a></td>
                 </tr>
+                
             </tbody>
-
         }
+        
+        <tr>
+            <td><strong>Toplam :</strong>  @Model.Cart.Total</td>
+        </tr>
     </table>
+    @*<li>
+        <a><span class="glyphicon glyphicon-align-left glyphicon-shopping-cart" aria-hidden="true"></span>@Model.Cart.Total</a>
+    </li>*@
+    
 }
+<a class="btn btn-primary " asp-controller="Cart" asp-action="Complete" >İlerle</a>
 

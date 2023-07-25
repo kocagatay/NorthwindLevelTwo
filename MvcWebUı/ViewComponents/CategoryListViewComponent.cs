@@ -13,7 +13,7 @@ namespace MvcWebUI.ViewComponents
             _categoryService = categoryService;
         }
 
-        public ViewViewComponentResult Invoke()
+        public ViewViewComponentResult Invoke(int page=1)
         {
             var model = new CategoryListViewModel
             {

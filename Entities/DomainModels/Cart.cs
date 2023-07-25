@@ -15,13 +15,13 @@ namespace Entities.DomainModels
         }
         public List<CartLine> CartLines { get; set; }
 
-        //public decimal Total
-        //{
-        //    get
-        //    {
-        //        return CartLines.Sum(c => c.Quantity * c.Product.UnitPrice);
-        //    }
+        public decimal Total
+        {
+            get
+            {
+                return CartLines.Sum(c => c.Product.UnitPrice * c.Quantity);
+            }
 
-        //}
+        }
     }
 }

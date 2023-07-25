@@ -16,8 +16,16 @@ namespace MvcWebUI.Controllers
             var model = new ProductListViewModel
             {
                 Products = category > 0 ? _productService.GetByCategory(category) : _productService.GetAll()
+
             };
             return View(model);
         }
-    }
+
+        //modelbinding paging yaptık sayfaladı dataları ama gereksiz buldum şu an için
+        //DataTable varken pagelemeye gerek var mı datayı yoo.
+        //CustomTagHelpers'da yazdı bu da gereksiz
+        //
+
+
+    } 
 }
