@@ -5,7 +5,7 @@ namespace MvcWebUI.Helpers
 {
     public class CartSessionHelper : ICartSessionHelper
     {
-        IHttpContextAccessor _httpcontextAccessor;
+        IHttpContextAccessor _httpcontextAccessor; //Session controller odaklı olduğu için buna ihtiyacımız oluyor. Session'ı buradan çağırıyoruz.
 
         public CartSessionHelper(IHttpContextAccessor httpcontextAccessor)
         {
@@ -19,7 +19,7 @@ namespace MvcWebUI.Helpers
 
         public Cart GetCart(string key)
         {
-            Cart cartToCheck = _httpcontextAccessor.HttpContext.Session.GetObject<Cart>(key);
+            Cart cartToCheck = _httpcontextAccessor.HttpContext.Session.GetObject<Cart>(key); //Şurada
             if (cartToCheck == null)
             {
                 SetCart(key, new Cart());

@@ -8,9 +8,9 @@ namespace MvcWebUI.Controllers
 {
     public class CartController : Controller
     {
-        ICartService _cartService;
-        ICartSessionHelper _cartSessionHelper;
-        IProductService _productService;
+        private ICartService _cartService;
+        private ICartSessionHelper _cartSessionHelper;
+        private IProductService _productService;
         public CartController(ICartService cartService, ICartSessionHelper cartSessionHelper, IProductService productService)
         {
             _cartService = cartService;
